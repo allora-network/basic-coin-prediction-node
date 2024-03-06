@@ -1,0 +1,8 @@
+FROM --platform=linux/amd64 696230526504.dkr.ecr.us-east-1.amazonaws.com/allora-inference-base:latest
+# FROM --platform=linux/amd64 allora-inference-base:dev
+
+USER root
+RUN pip install requests
+
+USER appuser
+COPY main.py /app/
