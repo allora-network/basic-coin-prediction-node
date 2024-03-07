@@ -42,7 +42,6 @@ The current `docker-compose.yml` file shows the `worker` service setting UID and
 # Docker-Compose Setup
 A full working example is provided in the `docker-compose.yml` file.
 
-## Setup
 1. **Generate keys**: Create a set of keys for your head and worker nodes. These keys will be used in the configuration of the head and worker nodes.
 
 **Create head keys:**
@@ -57,14 +56,14 @@ docker run -it --entrypoint=bash -v ./worker-data:/data 696230526504.dkr.ecr.us-
 
 Important note: If no keys are specified in the volumes, new keys will be automatically created inside `head-data/keys` and `worker-data/keys` when first running step 4.
 
-3. **Connect the worker node to the head node**:
+2. **Connect the worker node to the head node**:
 
 At this step, both worker and head nodes identities are generated inside `head-data/keys` and `worker-data/keys`.
 To instruct the worker node to connect to the head node:
 - get the head node's peer_id specified in the `head-data/keys/identity` file
 - use the peer_id to replace the `head-id` placeholder value specified inside the docker-compose.yml file when running the worker service: `--boot-nodes=/ip4/172.22.0.100/tcp/9010/p2p/{head-id}`
 
-4. **Run setup**
+3. **Run setup**
 Once all the above is set up, run `docker compose up head worker inference`
 This will bring up the head, the worker and the inference nodes (which will run an initial update). The `updater` node is a companion for updating the inference node state and it's meant to hit the /update endpoint on the inference service. It is expected to run periodically, being crucial for maintaining the accuracy of the inferences.
 
