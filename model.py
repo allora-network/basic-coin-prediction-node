@@ -6,11 +6,11 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from updater import download_binance_monthly_data, download_binance_daily_data
-from config import app_base_path, model_file_path
+from config import data_base_path, model_file_path
 
 
-binance_data_path = os.path.join(app_base_path, "binance/futures-klines")
-training_price_data_path = os.path.join(app_base_path, "eth_price_data.csv")
+binance_data_path = os.path.join(data_base_path, "binance/futures-klines")
+training_price_data_path = os.path.join(data_base_path, "eth_price_data.csv")
 
 
 def download_data():
