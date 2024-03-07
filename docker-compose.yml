@@ -50,7 +50,7 @@ services:
         allora-node --role=worker --peer-db=/data/peerdb --function-db=/data/function-db \
           --runtime-path=/app/runtime --runtime-cli=bls-runtime --workspace=/data/workspace \
           --private-key=/data/keys/priv.bin --log-level=debug --port=9011 \
-          --boot-nodes=/ip4/172.22.0.100/tcp/9010/p2p/12D3KooWSBJucc8S3YdLH8n5UqTQpSbNjwEjcnYCW8zWuPhDAFHY \
+          --boot-nodes=/ip4/172.22.0.100/tcp/9010/p2p/head-id \
           --topic=1
     volumes:
       - ./worker-data:/data
@@ -65,7 +65,6 @@ services:
         ipv4_address: 172.22.0.10
 
   head:
-    # 12D3KooWSBJucc8S3YdLH8n5UqTQpSbNjwEjcnYCW8zWuPhDAFHY
     container_name: head-basic-eth-pred
     image: 696230526504.dkr.ecr.us-east-1.amazonaws.com/allora-inference-base-head:latest
     environment:
