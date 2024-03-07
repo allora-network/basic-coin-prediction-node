@@ -61,7 +61,7 @@ Important note: If no keys are specified in the volumes, new keys will be automa
 At this step, both worker and head nodes identities are generated inside `head-data/keys` and `worker-data/keys`.
 To instruct the worker node to connect to the head node:
 - get the head node's peer_id specified in the `head-data/keys/identity` file
-- use the peer_id to replace the `head-id` placeholder value specified inside the docker-compose.yml file when running the worker service: `--boot-nodes=/ip4/172.22.0.100/tcp/9010/p2p/{head-id}`
+- use the peer_id to replace the `head-id` placeholder value specified inside the docker-compose.yml file when running the worker service: `--boot-nodes=/ip4/172.22.0.100/tcp/9010/p2p/head-id`
 
 3. **Run setup**
 Once all the above is set up, run `docker compose up head worker inference`
