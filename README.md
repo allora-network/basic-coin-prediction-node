@@ -98,22 +98,38 @@ curl --location 'http://localhost:6000/api/v1/functions/execute' \
 ```
 Response: 
 ```
-{"code":"200","request_id":"e3daeda0-c849-4b68-b21d-8f51e42bb9d3","results":[{"result":{"stdout":"{\"value\":\"2564.250058819078\"}\n\n\n","stderr":"","exit_code":0},"peers":["12D3KooWG8dHctRt6ctakJfG5masTnLaKM6xkudoR5BxLDRSrgVt"],"frequency":100}],"cluster":{"peers":["12D3KooWG8dHctRt6ctakJfG5masTnLaKM6xkudoR5BxLDRSrgVt"]}}
+{
+  "code": "200",
+  "request_id": "03001a39-4387-467c-aba1-c0e1d0d44f59",
+  "results": [
+    {
+      "result": {
+        "stdout": "{\"value\":\"2564.021586281073\"}",
+        "stderr": "",
+        "exit_code": 0
+      },
+      "peers": [
+        "12D3KooWG8dHctRt6ctakJfG5masTnLaKM6xkudoR5BxLDRSrgVt"
+      ],
+      "frequency": 100
+    }
+  ],
+  "cluster": {
+    "peers": [
+      "12D3KooWG8dHctRt6ctakJfG5masTnLaKM6xkudoR5BxLDRSrgVt"
+    ]
+  }
+}
 ```
 
 ## Testing inference only
 This setup allows to develop your model without the need for bringing up the head and worker.
 To only test the inference model, you can just:
-- In docker-compose.yml, under `inference` service, uncomment the lines:
-    ```
-    ports:
-      - "8000:8000"
-    ```
 - Run `docker compose up --build inference` and wait for the initial data load.
 - Requests can now be sent, e.g. request ETH price inferences as in: 
   ```
     $ curl http://localhost:8000/inference/ETH
-    {"value":"2564.2513659239594"}
+    {"value":"2564.021586281073"}
   ```
   or update the node's internal state (download pricing data, train and update the model):
   ```
