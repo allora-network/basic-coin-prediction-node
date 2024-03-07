@@ -94,6 +94,9 @@ def train_model():
     model = LinearRegression()
     model.fit(x_train, y_train)
 
+    # create the model's parent directory if it doesn't exist
+    os.makedirs(os.path.dirname(model_file_path), exist_ok=True)
+
     # Save the trained model to a file
     with open(model_file_path, "wb") as f:
         pickle.dump(model, f)
