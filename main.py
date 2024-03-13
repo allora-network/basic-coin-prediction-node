@@ -15,8 +15,10 @@ def process(token_name):
 if __name__ == "__main__":
     # Your code logic with the parsed argument goes here
     try:
-        if len(sys.argv) >= 2:
-            token_name = sys.argv[1]
+        if len(sys.argv) >= 3:
+            # Not using to discriminate by topicId for simplicity.
+            # topic_id = sys.argv[1]
+            token_name = sys.argv[2]
         else:
             token_name = "ETH"
         process(token_name=token_name)
