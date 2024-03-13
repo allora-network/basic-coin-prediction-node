@@ -66,7 +66,7 @@ services:
 
   head:
     container_name: head-basic-eth-pred
-    image: 696230526504.dkr.ecr.us-east-1.amazonaws.com/allora-inference-base-head:latest
+    image: alloranetwork/allora-inference-base-head:latest
     environment:
       - HOME=/data
     entrypoint:
