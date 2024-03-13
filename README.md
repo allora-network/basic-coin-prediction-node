@@ -46,12 +46,12 @@ A full working example is provided in the `docker-compose.yml` file.
 
 **Create head keys:**
 ```
-docker run -it --entrypoint=bash -v ./head-data:/data 696230526504.dkr.ecr.us-east-1.amazonaws.com/allora-inference-base:latest -c "mkdir -p /data/keys && (cd /data/keys && allora-keys)"
+docker run -it --entrypoint=bash -v ./head-data:/data alloranetwork/allora-inference-base:latest -c "mkdir -p /data/keys && (cd /data/keys && allora-keys)"
 ```
 
 **Create worker keys**
 ```
-docker run -it --entrypoint=bash -v ./worker-data:/data 696230526504.dkr.ecr.us-east-1.amazonaws.com/allora-inference-base:latest -c "mkdir -p /data/keys && (cd /data/keys && allora-keys)"
+docker run -it --entrypoint=bash -v ./worker-data:/data alloranetwork/allora-inference-base:latest -c "mkdir -p /data/keys && (cd /data/keys && allora-keys)"
 ```
 
 Important note: If no keys are specified in the volumes, new keys will be automatically created inside `head-data/keys` and `worker-data/keys` when first running step 3.
