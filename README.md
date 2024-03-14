@@ -60,7 +60,7 @@ Important note: If no keys are specified in the volumes, new keys will be automa
 
 At this step, both worker and head nodes identities are generated inside `head-data/keys` and `worker-data/keys`.
 To instruct the worker node to connect to the head node:
-- run `cat data/head/keys/identity` to extract the head node's peer_id specified in the `head-data/keys/identity`
+- run `cat head-data/keys/identity` to extract the head node's peer_id specified in the `head-data/keys/identity`
 - use the printed peer_id to replace the `head-id` placeholder value specified inside the docker-compose.yml file when running the worker service: `--boot-nodes=/ip4/172.22.0.100/tcp/9010/p2p/head-id`
 
 3. **Run setup**
@@ -138,7 +138,7 @@ To only test the inference model, you can just:
   ```
 
 ## Connecting to the Allora network
- To connect to the Allora network to provide inferences, both the head and the worker need to register against it.  More details on [allora-inference-base](https://github.com/allora-network/allora-inference-base) repo.
+ To connect to the Allora network to provide inferences, both the head and the worker need to register against it. More details on [allora-inference-base](https://github.com/allora-network/allora-inference-base) repo.
 The following optional flags are used in the `command:` section of the `docker-compose.yml` file to define the connectivity with the Allora network.
 
 ```
