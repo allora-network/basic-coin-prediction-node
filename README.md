@@ -64,7 +64,7 @@ To instruct the worker node to connect to the head node:
 - use the printed peer_id to replace the `head-id` placeholder value specified inside the docker-compose.yml file when running the worker service: `--boot-nodes=/ip4/172.22.0.100/tcp/9010/p2p/head-id`
 
 3. **Run setup**
-Once all the above is set up, run `docker compose up head worker inference`
+Once all the above is set up, run `docker-compose build && docker-compose up`
 This will bring up the head, the worker and the inference nodes (which will run an initial update). The `updater` node is a companion for updating the inference node state and it's meant to hit the /update endpoint on the inference service. It is expected to run periodically, being crucial for maintaining the accuracy of the inferences.
 
 ## Testing docker-compose setup
