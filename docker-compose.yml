@@ -13,15 +13,29 @@ services:
         aliases:
           - inference
         ipv4_address: 172.22.0.4
-    
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/inference/ETH"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    volumes:
+      - ./inference-data:/app/data
+  
   updater:
     container_name: updater-basic-eth-pred
     build: .
     environment:
       - INFERENCE_API_ADDRESS=http://inference:8000
-    command: python -u /app/update_app.py
+    command: >
+      sh -c "
+      while true; do
+        python -u /app/update_app.py;
+        sleep 24h;
+      done
+      "
     depends_on:
-      - inference
+      inference:
+        condition: service_healthy
     networks:
       eth-model-local:
         aliases:
@@ -102,5 +116,6 @@ networks:
         - subnet: 172.22.0.0/24
 
 volumes:
+  inference-data:
   worker-data:
   head-data:
