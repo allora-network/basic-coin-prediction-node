@@ -34,17 +34,13 @@ def generate_inference(token):
     """Generate inference for given token."""
     if not token or token != "ETH":
         error_msg = "Token is required" if not token else "Token not supported"
-        return Response(
-            json.dumps({"error": error_msg}), status=400, mimetype="application/json"
-        )
+        return Response(json.dumps({"error": error_msg}), status=400, mimetype='application/json')
 
     try:
         inference = get_eth_inference()
-        return jsonify({"value": str(inference)})
+        return Response(str(inference), status=200)
     except Exception as e:
-        return Response(
-            json.dumps({"error": str(e)}), status=500, mimetype="application/json"
-        )
+        return Response(json.dumps({"error": str(e)}), status=500, mimetype='application/json')
 
 
 @app.route("/update")
