@@ -73,7 +73,7 @@ The head node has the only open port and responds to requests in port 6000.
 
 Example request:
 ```
-curl --location 'http://localhost:6000/api/v1/functions/execute' \
+curl --location 'http://127.0.0.1:6000/api/v1/functions/execute' \
 --header 'Content-Type: application/json' \
 --data '{
     "function_id": "bafybeigpiwl3o73zvvl6dxdqu7zqcub5mhg65jiky2xqb4rdhfmikswzqm",
@@ -128,12 +128,12 @@ To only test the inference model, you can just:
 - Run `docker compose up --build inference` and wait for the initial data load.
 - Requests can now be sent, e.g. request ETH price inferences as in: 
   ```
-    $ curl http://localhost:8000/inference/ETH
+    $ curl http://127.0.0.1:8000/inference/ETH
     {"value":"2564.021586281073"}
   ```
   or update the node's internal state (download pricing data, train and update the model):
   ```
-    $ curl http://localhost:8000/update
+    $ curl http://127.0.0.1:8000/update
     0
   ```
 
