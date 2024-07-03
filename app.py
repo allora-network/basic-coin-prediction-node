@@ -17,7 +17,7 @@ def update_data():
     train_model()
 
 
-def get_eth_inference():
+def get_sol_inference():
     """Load model and predict current price."""
     with open(model_file_path, "rb") as f:
         loaded_model = pickle.load(f)
@@ -32,12 +32,12 @@ def get_eth_inference():
 @app.route("/inference/<string:token>")
 def generate_inference(token):
     """Generate inference for given token."""
-    if not token or token != "ETH":
+    if not token or token != "SOL":
         error_msg = "Token is required" if not token else "Token not supported"
         return Response(json.dumps({"error": error_msg}), status=400, mimetype='application/json')
 
     try:
-        inference = get_eth_inference()
+        inference = get_sol_inference()
         return Response(str(inference), status=200)
     except Exception as e:
         return Response(json.dumps({"error": str(e)}), status=500, mimetype='application/json')
