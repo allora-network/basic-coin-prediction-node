@@ -29,10 +29,9 @@ By default, the application runtime lives under `/app`, as well as the Python co
 
 ### Data volume and permissions
 
-It is recommended to mount `/data` as a volume, to persist the node databases of peers, functions, etc. which are defined in the flags passed to the worker.
-You can create this folder e.g. `mkdir data` in the repo root directory.
-
-It is recommended to set up two different `/data` volumes. It is suggested to use `worker-data` for the worker, `head-data` for the head.
+It is recommended to mount the `/worker-data` and `/head-data` folders as volumes, to persist the node databases of peers, functions, etc. which are defined in the flags passed to the worker.
+You can create two different `/data` volumes. It is suggested to use `worker-data` for the worker, `head-data` for the head:
+`mkdir worker-data && mkdir heaed-data`.
 
 Troubleshooting: A conflict may happen between the uid/gid of the user inside the container(1001) with the permissions of your own user.
 To make the container user have permissions to write on the `/data` volume, you may need to set the UID/GID from the user running the container. You can get those in linux/osx via `id -u` and `id -g`.
@@ -61,10 +60,10 @@ Important note: If no keys are specified in the volumes, new keys will be automa
 At this step, both worker and head nodes identities are generated inside `head-data/keys` and `worker-data/keys`.
 To instruct the worker node to connect to the head node:
 - run `cat head-data/keys/identity` to extract the head node's peer_id specified in the `head-data/keys/identity`
-- use the printed peer_id to replace the `head-id` placeholder value specified inside the docker-compose.yml file when running the worker service: `--boot-nodes=/ip4/172.22.0.100/tcp/9010/p2p/head-id`
+- use the printed peer_id to replace the `{HEAD-ID}` placeholder value specified inside the docker-compose.yml file when running the worker service: `--boot-nodes=/ip4/172.22.0.100/tcp/9010/p2p/{HEAD-ID}`
 
 3. **Run setup**
-Once all the above is set up, run `docker-compose build && docker-compose up`
+Once all the above is set up, run `docker compose up --build`
 This will bring up the head, the worker and the inference nodes (which will run an initial update). The `updater` node is a companion for updating the inference node state and it's meant to hit the /update endpoint on the inference service. It is expected to run periodically, being crucial for maintaining the accuracy of the inferences.
 
 ## Testing docker-compose setup
@@ -92,7 +91,7 @@ curl --location 'http://127.0.0.1:6000/api/v1/functions/execute' \
             }
         ],
         "number_of_nodes": -1,
-        "timeout": 2
+        "timeout": 5
     }
 }'
 ```
@@ -100,23 +99,23 @@ Response:
 ```
 {
   "code": "200",
-  "request_id": "03001a39-4387-467c-aba1-c0e1d0d44f59",
+  "request_id": "14be2a82-432c-4bae-bc1a-20c7627e0ebc",
   "results": [
     {
       "result": {
-        "stdout": "{\"value\":\"2564.021586281073\"}",
+        "stdout": "{\"infererValue\": \"2946.450220116334\"}\n\n",
         "stderr": "",
         "exit_code": 0
       },
       "peers": [
-        "12D3KooWG8dHctRt6ctakJfG5masTnLaKM6xkudoR5BxLDRSrgVt"
+        "12D3KooWGHYZAR5YBgJHvG8o8GxBJpV5ANLUfL1UReX5Lizg5iKf"
       ],
       "frequency": 100
     }
   ],
   "cluster": {
     "peers": [
-      "12D3KooWG8dHctRt6ctakJfG5masTnLaKM6xkudoR5BxLDRSrgVt"
+      "12D3KooWGHYZAR5YBgJHvG8o8GxBJpV5ANLUfL1UReX5Lizg5iKf"
     ]
   }
 }
