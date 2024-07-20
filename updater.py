@@ -7,12 +7,13 @@ from concurrent.futures import ThreadPoolExecutor
 def download_url(url, download_path):
     target_file_path = os.path.join(download_path, os.path.basename(url)) 
     if os.path.exists(target_file_path):
-        print(f"File already exists: {url}")
+        # print(f"File already exists: {url}")
         return
     
     response = requests.get(url)
     if response.status_code == 404:
-        print(f"File not exist: {url}")
+        # print(f"File not exist: {url}")
+        pass
     else:
 
         # create the entire path if it doesn't exist
@@ -20,7 +21,7 @@ def download_url(url, download_path):
 
         with open(target_file_path, "wb") as f:
             f.write(response.content)
-        print(f"Downloaded: {url} to {target_file_path}")
+        # print(f"Downloaded: {url} to {target_file_path}")
 
 
 def download_binance_monthly_data(
