@@ -3,14 +3,10 @@ services:
     container_name: inference-basic-eth-pred
     build:
       context: .
+      dockerfile: Dockerfile_inference
     command: python -u /app/app.py
     ports:
       - "8000:8000"
-    networks:
-      eth-model-local:
-        aliases:
-          - inference
-        ipv4_address: 172.22.0.4
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/inference/ETH"]
       interval: 10s
@@ -21,7 +17,9 @@ services:
   
   updater:
     container_name: updater-basic-eth-pred
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile_inference
     environment:
       - INFERENCE_API_ADDRESS=http://inference:8000
     command: >
@@ -34,78 +32,17 @@ services:
     depends_on:
       inference:
         condition: service_healthy
-    networks:
-      eth-model-local:
-        aliases:
-          - updater
-        ipv4_address: 172.22.0.5
-  
-  head:
-    container_name: head-basic-eth-pred
-    image: alloranetwork/allora-inference-base-head:latest
-    environment:
-      - HOME=/data
-    entrypoint:
-      - "/bin/bash"
-      - "-c"
-      - |
-        if [ ! -f /data/keys/priv.bin ]; then
-          echo "Generating new private keys..."
-          mkdir -p /data/keys
-          cd /data/keys
-          allora-keys
-        fi
-        allora-node --role=head --peer-db=/data/peerdb --function-db=/data/function-db  \
-          --runtime-path=/app/runtime --runtime-cli=bls-runtime --workspace=/data/workspace \
-          --private-key=/data/keys/priv.bin --log-level=debug --port=9010 --rest-api=:6000
-    ports:
-      - "6000:6000"
-    volumes:
-      - ./head-data:/data
-    working_dir: /data
-    networks:
-      eth-model-local:
-        aliases:
-          - head
-        ipv4_address: 172.22.0.100
 
-  worker:
-    container_name: worker-basic-eth-pred
-    environment:
-      - INFERENCE_API_ADDRESS=http://inference:8000
-      - HOME=/data
-    build:
-      context: .
-      dockerfile: Dockerfile_b7s
-    entrypoint:
-      - "/bin/bash"
-      - "-c"
-      - |
-        if [ ! -f /data/keys/priv.bin ]; then
-          echo "Generating new private keys..."
-          mkdir -p /data/keys
-          cd /data/keys
-          allora-keys
-        fi
-        # Change boot-nodes below to the key advertised by your head
-        allora-node --role=worker --peer-db=/data/peerdb --function-db=/data/function-db \
-          --runtime-path=/app/runtime --runtime-cli=bls-runtime --workspace=/data/workspace \
-          --private-key=/data/keys/priv.bin --log-level=debug --port=9011 \
-          --boot-nodes=/ip4/172.22.0.100/tcp/9010/p2p/{HEAD-ID} \
-          --topic=allora-topic-1-worker
+  node:
+    container_name: offchain_node_test
+    image: allora-offchain-node:latest
     volumes:
-      - ./worker-data:/data
-    working_dir: /data
+      - ./offchain-node-data:/data
     depends_on:
-      - inference
-      - head
-    networks:
-      eth-model-local:
-        aliases:
-          - worker
-        ipv4_address: 172.22.0.10
-
-
+      inference:
+        condition: service_healthy
+    env_file:
+      - ./env.offchain-node
   
 networks:
   eth-model-local:
@@ -117,4 +54,3 @@ networks:
 volumes:
   inference-data:
   worker-data:
-  head-data:

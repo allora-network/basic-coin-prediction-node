@@ -1,12 +1,12 @@
 .DS_Store
 __pycache__
 *.pyc
-.lake_cache/*
 logs/*
 .env
-keys
-data
 inference-data
 worker-data
 head-data
-lib
+offchain-node-data
+
+.env.*
+!.env.*.example
