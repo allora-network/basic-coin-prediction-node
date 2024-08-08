@@ -4,7 +4,7 @@ services:
     build: .
     command: python -u /app/app.py
     ports:
-      - "8002:8000"
+      - "8000:8000"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/inference/ETH"]
       interval: 10s

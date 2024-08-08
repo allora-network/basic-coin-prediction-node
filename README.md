@@ -37,7 +37,7 @@ A complete working example is provided in the `docker-compose.yml` file.
 
 4. **Faucet Your Worker Node**
     
-    You can find the offchain worker node's address in `./worker-data/env_file` under `ALLORA_OFFCHAIN_ACCOUNT_ADDRESS`. Request some tokens from the faucet to register your worker.
+    You can find the offchain worker node's address in `./worker-data/env_file` under `ALLORA_OFFCHAIN_ACCOUNT_ADDRESS`. [Add faucet funds](https://docs.allora.network/devs/get-started/setup-wallet#add-faucet-funds) to your worker's wallet before starting it.
 
 5. **Start the Services**
     
