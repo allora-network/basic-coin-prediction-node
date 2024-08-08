@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -e
+
+if [ ! -f config.json ]; then
+    echo "Error: config.json file not found, please provide one"
+    exit 1
+fi
+
+nodeName=$(jq -r '.wallet.addressKeyName' config.json)
+if [ -z "$nodeName" ]; then
+    echo "No name was provided for the node, please provide value for wallet.addressKeyName in the config.json"
+    exit 1
+fi
+
+if [ ! -f ./worker-data/env_file ]; then
+    echo "ENV_LOADED=false" > ./worker-data/env_file
+fi
+
+ENV_LOADED=$(grep '^ENV_LOADED=' ./worker-data/env_file | cut -d '=' -f 2)
+if [ "$ENV_LOADED" = "false" ]; then
+    json_content=$(cat ./config.json)
+    stringified_json=$(echo "$json_content" | jq -c .)
+    
+    docker run -it --entrypoint=bash -v $(pwd)/worker-data:/data -e NAME="${nodeName}" -e ALLORA_OFFCHAIN_NODE_CONFIG_JSON="${stringified_json}" alloranetwork/allora-chain:latest -c "bash /data/scripts/init.sh"
+    echo "config.json saved to ./worker-data/env_file"
+else
+    echo "config.json is already loaded, skipping the operation. You can set ENV_LOADED variable to false in ./worker-data/env_file to reload the config.json"
+fi

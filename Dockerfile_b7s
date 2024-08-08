@@ -1,7 +1,0 @@
-FROM alloranetwork/allora-inference-base:latest
-
-USER root
-RUN pip install requests
-
-USER appuser
-COPY main.py /app/
