@@ -33,16 +33,16 @@ services:
       inference:
         condition: service_healthy
 
-  node:
-    container_name: offchain_node
-    image: allora-offchain-node:latest
+  worker:
+    container_name: worker
+    image: alloranetwork/allora-offchain-node:latest
     volumes:
-      - ./offchain-node-data:/data
+      - ./worker-data:/data
     depends_on:
       inference:
         condition: service_healthy
     env_file:
-      - ./offchain-node-data/env_file
+      - ./worker-data/env_file
   
 networks:
   eth-model-local:
@@ -53,4 +53,4 @@ networks:
 
 volumes:
   inference-data:
-  offchain-node-data:
+  worker-data:

@@ -1,4 +1,0 @@
-ALLORA_OFFCHAIN_NODE_CONFIG_JSON='{"wallet":{"addressKeyName":"basic-coin-prediction-offchain-node","addressRestoreMnemonic":"rich note fetch lava bless snake delay theme era anger ritual sea pluck neck hazard dish talk ranch trophy clap fancy human divide gun","addressAccountPassphrase":"secret","alloraHomeDir":"","gas":"1000000","gasAdjustment":1,"nodeRpc":"https://allora-rpc.devnet.behindthecurtain.xyz","maxRetries":1,"minDelay":1,"maxDelay":2,"submitTx":false},"worker":[{"topicId":1,"inferenceEntrypointName":"api-worker-reputer","loopSeconds":5,"parameters":{"InferenceEndpoint":"http://inference:8000/inference/{Token}","Token":"ETH"}}]}'
-ALLORA_OFFCHAIN_ACCOUNT_ADDRESS=allo14wkkdeg93mdc0sd770z9p4mpjz7w9mysz328um
-NAME=basic-coin-prediction-offchain-node
-ENV_LOADED=true
