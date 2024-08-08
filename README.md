@@ -18,12 +18,14 @@ A complete working example is provided in the `docker-compose.yml` file.
 
 1. **Clone the Repository**
 2. **Copy and Populate Configuration**
+    
     Copy the example configuration file and populate it with your variables:
     ```sh
     cp config.example.json config.json
     ```
 
 3. **Initialize Worker**
+    
     Run the following commands from the project's root directory to initialize the worker:
     ```sh
     chmod +x init.docker
@@ -34,9 +36,11 @@ A complete working example is provided in the `docker-compose.yml` file.
     - Export the needed variables from the created account to be used by the worker node, bundle them with your provided `config.json`, and pass them to the node as environment variables.
 
 4. **Faucet Your Worker Node**
+    
     You can find the offchain worker node's address in `./worker-data/env_file` under `ALLORA_OFFCHAIN_ACCOUNT_ADDRESS`. Request some tokens from the faucet to register your worker.
 
 5. **Start the Services**
+    
     Run the following command to start the worker node, inference, and updater nodes:
     ```sh
     docker compose up --build
@@ -57,6 +61,7 @@ This setup allows you to develop your model without the need to bring up the hea
     Wait for the initial data load.
 
 2. Send requests to the inference model. For example, request ETH price inferences:
+    
     ```sh
     curl http://127.0.0.1:8000/inference/ETH
     ```
@@ -66,6 +71,7 @@ This setup allows you to develop your model without the need to bring up the hea
     ```
 
 3. Update the node's internal state (download pricing data, train, and update the model):
+    
     ```sh
     curl http://127.0.0.1:8000/update
     ```
