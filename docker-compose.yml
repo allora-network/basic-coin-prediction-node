@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile_inference
     command: python -u /app/app.py
     ports:
-      - "8000:8000"
+      - "8002:8000"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/inference/ETH"]
       interval: 10s
@@ -34,7 +34,7 @@ services:
         condition: service_healthy
 
   node:
-    container_name: offchain_node_test
+    container_name: offchain_node
     image: allora-offchain-node:latest
     volumes:
       - ./offchain-node-data:/data
@@ -42,7 +42,7 @@ services:
       inference:
         condition: service_healthy
     env_file:
-      - ./env.offchain-node
+      - ./offchain-node-data/env_file
   
 networks:
   eth-model-local:
@@ -53,4 +53,4 @@ networks:
 
 volumes:
   inference-data:
-  worker-data:
+  offchain-node-data:

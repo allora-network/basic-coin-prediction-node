@@ -2,11 +2,10 @@
 __pycache__
 *.pyc
 logs/*
-.env
-inference-data
-worker-data
-head-data
-offchain-node-data
 
-.env.*
-!.env.*.example
+.allorad
+.cache
+inference-data
+
+config.json
+env
