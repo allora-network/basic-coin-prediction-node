@@ -52,7 +52,7 @@ A complete working example is provided in the `docker-compose.yml` file.
 
 ## Testing Inference Only
 
-This setup allows you to develop your model without the need to bring up the head and worker. To test the inference model only:
+This setup allows you to develop your model without the need to bring up the offchain worker or the updater. To test the inference model only:
 
 1. Run the following command to start the inference node:
     ```sh
