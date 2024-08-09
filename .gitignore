@@ -10,3 +10,4 @@ inference-data
 config.json
 env
 env_file
+.env
