@@ -6,6 +6,7 @@ logs/*
 .allorad
 .cache
 inference-data
+worker-data
 
 config.json
 env

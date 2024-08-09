@@ -1,3 +1,0 @@
-ALLORA_OFFCHAIN_NODE_CONFIG_JSON='{"wallet":{"addressKeyName":"test-basic","addressRestoreMnemonic":"your mnemonic will go here","alloraHomeDir":"","gas":"1000000","gasAdjustment":1,"nodeRpc":"https://allora-rpc.devnet.behindthecurtain.xyz","maxRetries":1,"delay":1,"submitTx":false},"worker":[{"topicId":1,"inferenceEntrypointName":"api-worker-reputer","loopSeconds":5,"parameters":{"InferenceEndpoint":"http://inference:8000/inference/{Token}","Token":"ETH"}}]}'
-NAME=test-basic
-ENV_LOADED=true
