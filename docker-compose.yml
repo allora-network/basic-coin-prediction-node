@@ -1,7 +1,9 @@
 services:
   inference:
     container_name: inference-basic-eth-pred
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile_inference
     command: python -u /app/app.py
     ports:
       - "8000:8000"
@@ -15,7 +17,9 @@ services:
   
   updater:
     container_name: updater-basic-eth-pred
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile_inference
     environment:
       - INFERENCE_API_ADDRESS=http://inference:8000
     command: >
@@ -32,13 +36,14 @@ services:
   worker:
     container_name: worker
     image: alloranetwork/allora-offchain-node:latest
+    build:
+      context: .
+      dockerfile: Dockerfile_worker
     volumes:
       - ./worker-data:/data
     depends_on:
       inference:
         condition: service_healthy
-    env_file:
-      - ./worker-data/env_file
 
 volumes:
   inference-data:

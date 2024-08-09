@@ -1,0 +1,7 @@
+FROM alloranetwork/allora-offchain-node:latest
+
+COPY ./config.json /app/config.json
+
+ENV ALLORA_OFFCHAIN_NODE_CONFIG_FILE_PATH=/app/config.json
+
+CMD ["./allora_offchain_node"]
