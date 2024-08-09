@@ -16,7 +16,7 @@
             "inferenceEntrypointName": "api-worker-reputer",
             "loopSeconds": 5,
             "parameters": {
-                "InferenceEndpoint": "http://source:8000/inference/{Token}",
+                "InferenceEndpoint": "http://inference:8000/inference/{Token}",
                 "Token": "ETH"
             }
         }
