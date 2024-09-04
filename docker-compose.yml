@@ -1,12 +1,14 @@
 services:
   inference:
     container_name: inference-basic-eth-pred
+    env_file:
+      - .env
     build: .
     command: python -u /app/app.py
     ports:
       - "8000:8000"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/inference/ETH"]
+      test: ["CMD", "curl", "-f", "http://localhost:8000/inference/${TOKEN}"]
       interval: 10s
       timeout: 5s
       retries: 12
@@ -31,7 +33,7 @@ services:
 
   worker:
     container_name: worker
-    image: alloranetwork/allora-offchain-node:latest
+    image: alloranetwork/allora-offchain-node:v0.3.0
     volumes:
       - ./worker-data:/data
     depends_on:
