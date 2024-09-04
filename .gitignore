@@ -9,6 +9,13 @@ inference-data
 worker-data
 
 config.json
-env
-env_file
-.env
+/data
+
+**/*.venv*
+**/.cache
+**/.env
+**/env_file
+**/.gitkeep*
+**/*.csv
+**/*.pkl
+**/*.zip

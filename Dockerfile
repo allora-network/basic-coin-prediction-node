@@ -1,5 +1,4 @@
-# Use an official Python runtime as the base image
-FROM amd64/python:3.9-buster as project_env
+FROM python:3.11-slim as project_env
 
 # Set the working directory in the container
 WORKDIR /app
