@@ -44,7 +44,7 @@ A complete working example is provided in the `docker-compose.yml` file.
     - REGION
     Must be `EU` or `US` - it is used for the Binance API. 
     - DATA_PROVIDER
-    Must be `Binance` or `Coingecko`. Feel free to add support for other data providers to personalize your model!
+    Must be `binance` or `coingecko`. Feel free to add support for other data providers to personalize your model!
     - CG_API_KEY
     This is your `Coingecko` API key, if you've set `DATA_PROVIDER=coingecko`.
 
