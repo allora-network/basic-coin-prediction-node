@@ -1,5 +1,7 @@
-# Use an official Python runtime as the base image
-FROM amd64/python:3.9-buster AS project_env
+FROM python:3.11-slim AS project_env
+
+# Install curl
+RUN apt-get update && apt-get install -y curl
 
 # Set the working directory in the container
 WORKDIR /app
