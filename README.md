@@ -1,6 +1,6 @@
 # Basic Price Prediction Node
 
-This repository provides an example Allora network worker node, designed to offer price predictions. The primary objective is to demonstrate the use of a basic inference model running within a dedicated container, showcasing its integration with the Allora network infrastructure to contribute valuable inferences.
+This repository provides an example [Allora network](https://docs.allora.network/) worker node, designed to offer price predictions. The primary objective is to demonstrate the use of a basic inference model running within a dedicated container, showcasing its integration with the Allora network infrastructure to contribute valuable inferences.
 
 ## Components
 
