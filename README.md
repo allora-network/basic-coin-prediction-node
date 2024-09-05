@@ -42,7 +42,7 @@ A complete working example is provided in the `docker-compose.yml` file.
     Must be one in ['LinearRegression','SVR','KernelRidge','BayesianRidge']. 
     You can easily add support for any other models by [adding it here](https://github.com/allora-network/basic-coin-prediction-node/blob/main/model.py#L133).
     - REGION
-    Must be `EU` or `US` - it is used for the Binance API. 
+    Used for the Binance API. This should be in this form: `US`, `EU`, etc.
     - DATA_PROVIDER
     Must be `binance` or `coingecko`. Feel free to add support for other data providers to personalize your model!
     - CG_API_KEY
