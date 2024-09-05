@@ -1,6 +1,6 @@
 services:
   inference:
-    container_name: inference-basic-eth-pred
+    container_name: inference
     env_file:
       - .env
     build: .
@@ -8,7 +8,7 @@ services:
     ports:
       - "8000:8000"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/inference/${TOKEN}"]
+      test: ["CMD", "curl", "-f", "http://inference:8000/inference/${TOKEN}"]
       interval: 10s
       timeout: 5s
       retries: 12
@@ -16,7 +16,7 @@ services:
       - ./inference-data:/app/data
   
   updater:
-    container_name: updater-basic-eth-pred
+    container_name: updater
     build: .
     environment:
       - INFERENCE_API_ADDRESS=http://inference:8000
