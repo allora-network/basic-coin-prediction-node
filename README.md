@@ -26,7 +26,7 @@ A complete working example is provided in the `docker-compose.yml` file.
 
     Here are the currently accepted configurations:
     - TOKEN
-    Must be one in ['ETH','SOL','BTC','BNB','ARB']. 
+    Must be one in ('ETH','SOL','BTC','BNB','ARB'). 
     Note: if you are using `Binance` as the data provider, any token could be used.
     If you are using Coingecko, you should add its `coin_id` in the [token_map here](https://github.com/allora-network/basic-coin-prediction-node/blob/main/updater.py#L107). Find [more info here](https://docs.coingecko.com/reference/simple-price) and the [list here](https://docs.google.com/spreadsheets/d/1wTTuxXt8n9q7C4NDXqQpI3wpKu1_5bGVmP9Xz0XGSyU/edit?usp=sharing).
     - TRAINING_DAYS
@@ -39,7 +39,7 @@ A complete working example is provided in the `docker-compose.yml` file.
         - TIMEFRAME >= 4h if TRAINING_DAYS <= 30
         - TIMEFRAME >= 4d if TRAINING_DAYS >= 31
     - MODEL
-    Must be one in ['LinearRegression','SVR','KernelRidge','BayesianRidge']. 
+    Must be one in ('LinearRegression','SVR','KernelRidge','BayesianRidge'). 
     You can easily add support for any other models by [adding it here](https://github.com/allora-network/basic-coin-prediction-node/blob/main/model.py#L133).
     - REGION
     Must be `EU` or `US` - it is used for the Binance API. 
