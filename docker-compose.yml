@@ -33,7 +33,7 @@ services:
 
   worker:
     container_name: worker
-    image: alloranetwork/allora-offchain-node:v0.5.0
+    image: alloranetwork/allora-offchain-node:v0.5.1
     volumes:
       - ./worker-data:/data
     depends_on:
