@@ -5,6 +5,8 @@
         "alloraHomeDir": "",
         "gas": "auto",
         "gasAdjustment": 1.5,
+        "gasPrices": 0.08,
+        "maxFees": 200000,
         "nodeRpc": "https://allora-rpc.testnet.allora.network",
         "maxRetries": 5,
         "retryDelay": 3,
@@ -13,7 +15,7 @@
     },
     "worker": [
         {
-            "topicId": 1,
+            "topicId": 1,   
             "inferenceEntrypointName": "api-worker-reputer",
             "loopSeconds": 5,
             "parameters": {
