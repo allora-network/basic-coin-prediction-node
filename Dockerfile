@@ -1,4 +1,4 @@
-FROM python:3.11-slim AS project_env
+FROM python:3.14.0a1-slim AS project_env
 
 # Install curl
 RUN apt-get update && apt-get install -y curl
