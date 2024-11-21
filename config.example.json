@@ -5,11 +5,15 @@
         "alloraHomeDir": "",
         "gas": "auto",
         "gasAdjustment": 1.5,
+        "gasPrices": 10,
+        "maxFees": 25000000,
         "nodeRpc": "https://allora-rpc.testnet.allora.network",
         "maxRetries": 5,
         "retryDelay": 3,
         "accountSequenceRetryDelay": 5,
-        "submitTx": true
+        "submitTx": true,
+        "blockDurationEstimated": 5,
+        "windowCorrectionFactor": 0.8
     },
     "worker": [
         {
