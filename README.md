@@ -34,7 +34,7 @@ A complete working example is provided in the `docker-compose.yml` file.
     Represents how many days of historical data to use. 
     - TIMEFRAME
     This should be in this form: `10min`, `1h`, `1d`, `1m`, etc.
-    Note: For Coingecko, Data granularity (candle's body) is automatic - [see here](https://docs.coingecko.com/reference/coins-id-ohlc). To avoid downsampling, it is recommanded to use with Coingecko:
+    Note: For Coingecko, Data granularity (candle's body) is automatic - [see here](https://docs.coingecko.com/reference/coins-id-ohlc). To avoid downsampling, it is recommended to use with Coingecko:
         - TIMEFRAME >= 30m if TRAINING_DAYS <= 2
         - TIMEFRAME >= 4h if TRAINING_DAYS <= 30
         - TIMEFRAME >= 4d if TRAINING_DAYS >= 31
